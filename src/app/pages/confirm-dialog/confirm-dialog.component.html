@@ -1,27 +1,39 @@
-<div mat-dialog-content> {{message}}</div>
+
 <div>
 
 
+
+  <mat-form-field appearance="fill">
+  <label for="">Precio</label>
+  <br>
+  <input matInput type="number" step="0.1" [(ngModel)]="passedValues.precio" />
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
   <label for="">Nombre</label>
   <br>
 
-  <input type="text" style="width: 300px;" placeholder="Nombre">
+  <input matInput type="text" style="width: 300px;" placeholder="Nombre" [(ngModel)]="passedValues.nombre">
   <br>
-  <label for="">Precio</label>
+</mat-form-field>
+
   <br>
-  <input type="number" step="0.1" />
-  <br>
+  <mat-form-field appearance="fill">
   <label for="">Formato</label>
   <br>
-  <input type="text" style="width: 300px;" placeholder="Formato">
+  <input matInput type="text" style="width: 300px;" placeholder="Formato" [(ngModel)]="passedValues.formato">
+  </mat-form-field>
   <br>
+  <mat-form-field appearance="fill">
   <label for="">Marca</label>
   <br>
-  <input type="text" style="width: 300px;" placeholder="Marca">
+  <input matInput type="text" style="width: 300px;" placeholder="Marca" [(ngModel)]="passedValues.marca">
+</mat-form-field>
   <br>
-  <button mat-button (click)="onClickNO">Cancelar</button>
+  <button mat-button  [mat-dialog-close]="true">Cancelar</button>
 
-  <button mat-button [mat-dialog-close]="true">Guardar</button>
+  <button type="submit" [mat-dialog-close]="passedValues">Guardar</button>
 
 
 </div>
+

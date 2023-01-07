@@ -9,6 +9,16 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angu
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { DataSource } from '@angular/cdk/collections';
+
+
+//Other component
+
+
+
+import { MatFormField } from '@angular/material/form-field';
+
+
 /** Constants used to fill up our data base. */
 
 @Component({
@@ -18,8 +28,14 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 })
 export class TornillosComponent implements AfterViewInit {
 
+
+
+
+
+
+
     constructor(public dialog: MatDialog) {}
-    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','action'];
+    displayedColumns: string[] = ['precio', 'nombre', 'formato', 'marca','action'];
     dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -28,18 +44,67 @@ export class TornillosComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  public passedValues: PeriodicElement = {
+
+    precio: 0,
+    nombre: '',
+    formato:0,
+    marca: '',
+    action: ''
+  }
+
+
+
+
+
+
+
 
   openDialog(): void{
 
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {width:'500px',data:'Nuevo Tornillo'});
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {width:'500px'});
     dialogRef.afterClosed().subscribe(
 
       res => {
         console.log(res);
-      }
-    )
+
+        this.passedValues.precio = res.precio;
+        this.passedValues.nombre = res.nombre;
+        this.passedValues.formato = res.formato;
+        this.passedValues.marca = res.marca;
+        this.passedValues.action = '';
+
+         var array: PeriodicElement = res;
+         console.log(array,'el array');
+
+         ELEMENT_DATA.push(array);
+         console.log(ELEMENT_DATA);
+
+         this.dataSource._updateChangeSubscription();
+
+
+        //Object.keys(res).map(function(k){
+
+
+          //var newData = ELEMENT_DATA.push(res[k]);
+
+
+         // return ELEMENT_DATA.push(res[k]), console.log(ELEMENT_DATA);//console.log(res[k]);
+
+
+        //});
+
+
+      });
 
   }
+
+
+
+
+
+
+
 
   removeRow() : void{
 
@@ -48,50 +113,52 @@ export class TornillosComponent implements AfterViewInit {
 
       res => {
         console.log(res);
+
+
       }
+
+
     )
 
   }
 
+
+
 }
 
-
-
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+
+  precio: number;
+  nombre: string;
+  formato: number;
+  marca: string;
   action: string;
 
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H',action:''},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He',action:''},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li',action:''},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be',action:''},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B',action:''},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C',action:''},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N',action:''},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O',action:''},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F',action:''},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne',action:''},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na',action:''},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg',action:''},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al',action:''},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si',action:''},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P',action:''},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S',action:''},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl',action:''},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar',action:''},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K',action:''},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca',action:''},
+ var ELEMENT_DATA: PeriodicElement[] = [
+  {precio: 1, nombre: 'Hydrogen', formato: 1.0079, marca: 'H',action:''},
+  {precio: 2, nombre: 'Helium', formato: 4.0026, marca: 'He',action:''},
+  {precio: 3, nombre: 'Lithium', formato: 6.941, marca: 'Li',action:''},
+  {precio: 4, nombre: 'Beryllium', formato: 9.0122, marca: 'Be',action:''},
+  {precio: 5, nombre: 'Boron', formato: 10.811, marca: 'B',action:''},
+  {precio: 6, nombre: 'Carbon', formato: 12.0107, marca: 'C',action:''},
+  {precio: 7, nombre: 'Nitrogen', formato: 14.0067, marca: 'N',action:''},
+  {precio: 8, nombre: 'Oxygen', formato: 15.9994, marca: 'O',action:''},
+  {precio: 9, nombre: 'Fluorine', formato: 18.9984, marca: 'F',action:''},
+  {precio: 10, nombre: 'Neon', formato: 20.1797, marca: 'Ne',action:''},
+  {precio: 11, nombre: 'Sodium', formato: 22.9897, marca: 'Na',action:''},
+  {precio: 12, nombre: 'Magnesium', formato: 24.305, marca: 'Mg',action:''},
+  {precio: 13, nombre: 'Aluminum', formato: 26.9815, marca: 'Al',action:''},
+  {precio: 14, nombre: 'Silicon', formato: 28.0855, marca: 'Si',action:''},
+  {precio: 15, nombre: 'Phosphorus', formato: 30.9738, marca: 'P',action:''},
+  {precio: 16, nombre: 'Sulfur', formato: 32.065, marca: 'S',action:''},
+  {precio: 17, nombre: 'Chlorine', formato: 35.453, marca: 'Cl',action:''},
+  {precio: 18, nombre: 'Argon', formato: 39.948, marca: 'Ar',action:''},
+  {precio: 19, nombre: 'Potassium', formato: 39.0983, marca: 'K',action:''},
+  {precio: 20, nombre: 'Calcium', formato: 40.078, marca: 'Ca',action:''}
+
+
+
 ];
-
-
-
-
-
-
 

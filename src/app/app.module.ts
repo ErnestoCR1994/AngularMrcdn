@@ -24,6 +24,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { ConfirmDialogComponent } from './pages/confirm-dialog/confirm-dialog.component';
 import { DeleteDialogComponent } from './pages/delete-dialog/delete-dialog.component';
+import { FormsModule } from '@angular/forms';
+
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -47,7 +50,9 @@ import { DeleteDialogComponent } from './pages/delete-dialog/delete-dialog.compo
     MatSelectModule,
     MatToolbarModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    MatInputModule
   ],
   providers: [{provide: MatPaginatorIntl, useValue: CustomPaginator()}],
   bootstrap: [AppComponent]
