@@ -80,33 +80,13 @@ export class TornillosComponent implements AfterViewInit {
          ELEMENT_DATA.push(array);
          console.log(ELEMENT_DATA);
 
-         this.dataSource._updateChangeSubscription();
-
-
-        //Object.keys(res).map(function(k){
-
-
-          //var newData = ELEMENT_DATA.push(res[k]);
-
-
-         // return ELEMENT_DATA.push(res[k]), console.log(ELEMENT_DATA);//console.log(res[k]);
-
-
-        //});
-
+         this.updateDataSource();
 
       });
 
   }
 
-
-
-
-
-
-
-
-  removeRow() : void{
+  removeRow(index: number) : void{
 
     const dialogRef = this.dialog.open(DeleteDialogComponent, {width:'500px',data:'Nuevo Tornillo'});
     dialogRef.afterClosed().subscribe(
@@ -114,12 +94,17 @@ export class TornillosComponent implements AfterViewInit {
       res => {
         console.log(res);
 
+        ELEMENT_DATA.splice(index, 1);
+
+        this.updateDataSource();
 
       }
-
-
     )
+  }
 
+  updateDataSource(){
+
+    this.dataSource.data = ELEMENT_DATA;
   }
 
 
@@ -157,8 +142,5 @@ export interface PeriodicElement {
   {precio: 18, nombre: 'Argon', formato: 39.948, marca: 'Ar',action:''},
   {precio: 19, nombre: 'Potassium', formato: 39.0983, marca: 'K',action:''},
   {precio: 20, nombre: 'Calcium', formato: 40.078, marca: 'Ca',action:''}
-
-
-
 ];
 
