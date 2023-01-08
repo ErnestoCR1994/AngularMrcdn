@@ -10,6 +10,8 @@ import { PeriodicElement } from '../tornillos/tornillos.component';
 export class ConfirmDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>){}
+
+
   passedValues: PeriodicElement = {
 
     precio: 0,

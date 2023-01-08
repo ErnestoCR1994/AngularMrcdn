@@ -1,6 +1,58 @@
 
 .table-container {
-  margin-top: 10px;
-  max-height: 300px;
+  margin-top: 100px;
+  height: 500px;
+  padding-left: 150px;
+
+  width: 1200px;
+
+
   overflow: auto;
+
+  box-shadow: none;
 }
+
+
+
+table .table__header{
+
+  background-color: rgb(184, 184, 184);
+}
+
+
+
+
+#mat-paginator{
+
+  width: 1050px;
+  padding-left: 50px;
+
+  padding-right: 50px;
+
+  margin-left: 149px;
+
+  background-color: rgb(233, 233, 233);
+
+  box-shadow: 100px;
+}
+
+.line__width{
+
+  border: none;
+    height: 5px;
+    /* Set the hr color */
+    background-color: darkgreen; /* Modern Browsers */
+}
+
+.mat__button {
+
+
+  background-color: darkgreen !important;
+  color: whitesmoke !important;
+
+  margin-top: 10px;
+
+  margin-left: 1000px;
+}
+
+

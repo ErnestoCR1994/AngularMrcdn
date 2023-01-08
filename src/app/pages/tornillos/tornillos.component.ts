@@ -1,15 +1,18 @@
-import {AfterViewInit, Component, Inject, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Injectable, ViewChild} from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatDialog} from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-tornillos',
   templateUrl: './tornillos.component.html',
   styleUrls: ['./tornillos.component.scss']
 })
+
+@Injectable()
 export class TornillosComponent implements AfterViewInit {
 
   public passedValues: PeriodicElement = {
@@ -35,7 +38,13 @@ export class TornillosComponent implements AfterViewInit {
 
   public openDialog(): void{
 
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {width:'500px'});
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: '70vw',
+      maxHeight: '40vh',
+      height: '100%',
+      width: '100%',
+
+    });
     dialogRef.afterClosed().subscribe(
 
       res => {
@@ -59,21 +68,34 @@ export class TornillosComponent implements AfterViewInit {
 
   removeRow(index: number) : void{
 
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {width:'500px',data:'Nuevo Tornillo'});
+    const dialogRef = this.dialog.open(DeleteDialogComponent,{
+      maxWidth: '30vw',
+      maxHeight: '10vh',
+      height: '100%',
+      width: '100%',
+
+    });
     dialogRef.afterClosed().subscribe(
 
-      () => {
+      res => {
 
-        const currentPage = this.paginator.pageIndex;
+        if(res == true){
+          const currentPage = this.paginator.pageIndex;
 
-        const itemsPerPage = this.paginator.pageSize;
+          const itemsPerPage = this.paginator.pageSize;
 
-        const realIndex = index + currentPage * itemsPerPage;
+          const realIndex = index + currentPage * itemsPerPage;
 
-        ELEMENT_DATA.splice(realIndex, 1);
-        console.log(ELEMENT_DATA,index);
+          ELEMENT_DATA.splice(realIndex, 1);
+          console.log(ELEMENT_DATA,index);
 
-        this.updateDataSource();
+          this.updateDataSource();
+
+        }
+
+        else{
+          dialogRef.close();
+        }
 
       }
     )
@@ -85,6 +107,9 @@ export class TornillosComponent implements AfterViewInit {
   }
 
 
+  private data = new BehaviorSubject(ELEMENT_DATA);
+
+  sharedData = this.data.asObservable();
 
 }
 

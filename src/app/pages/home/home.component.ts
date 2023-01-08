@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TornillosComponent } from '../tornillos/tornillos.component';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +8,22 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+
+  constructor(private tornillosComponent: TornillosComponent){}
+
+       getData!: number;
+
+     tornillos = this.tornillosComponent.sharedData.subscribe(
+
+      data => (
+          this.getData = data.length
+      )
+     );
+
+
+
+
+
 }
+
+

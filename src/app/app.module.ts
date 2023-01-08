@@ -53,7 +53,7 @@ import { MatDialogRef } from '@angular/material/dialog';
     MatInputModule,
 
   ],
-  providers: [{provide: MatPaginatorIntl, useValue: CustomPaginator()}],
+  providers: [{provide: MatPaginatorIntl, useValue: CustomPaginator()}, TornillosComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

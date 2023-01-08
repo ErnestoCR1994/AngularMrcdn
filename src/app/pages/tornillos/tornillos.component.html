@@ -1,36 +1,36 @@
 
 <div class="table-container">
 
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+<div class="mat-elevation-z0">
+  <table class="table__principal" mat-table [dataSource]="dataSource">
 
     <!-- Position Column -->
-    <ng-container matColumnDef="precio">
-      <th mat-header-cell *matHeaderCellDef> Precio </th>
+    <ng-container  matColumnDef="precio">
+      <th  class="table__header" mat-header-cell *matHeaderCellDef> Precio </th>
       <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="nombre">
-      <th mat-header-cell *matHeaderCellDef> nombre </th>
+      <th class="table__header" mat-header-cell *matHeaderCellDef> Nombre </th>
       <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="formato">
-      <th mat-header-cell *matHeaderCellDef> Formato </th>
+      <th class="table__header" mat-header-cell *matHeaderCellDef> Formato </th>
       <td mat-cell *matCellDef="let element"> {{element.formato}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="marca">
-      <th mat-header-cell *matHeaderCellDef> Marca </th>
+      <th  class="table__header"mat-header-cell *matHeaderCellDef> Marca </th>
       <td mat-cell *matCellDef="let element"> {{element.marca}} </td>
     </ng-container>
 
     <!-- Action Column -->
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <th  class="table__header"mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let i = index"> <button mat-button
         class="button-remove" (click)="removeRow(i)">Delete</button> </td>
     </ng-container>
@@ -45,7 +45,7 @@
 </div>
 
 
-<mat-paginator id="mat-paginator"
+<mat-paginator id="mat-paginator" class="mat__paginator"
 
 [pageSize]="10"
 [pageSizeOptions]="[5, 10, 20]"
@@ -54,17 +54,11 @@ aria-label="Select page of periodic elements"[showFirstLastButtons]="true"
 >
 
 
-</mat-paginator>-->
+</mat-paginator>
+
+<hr class="line__width">
 
 
-<button mat-button (click)="openDialog()">Añadir Tornillo</button>
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<button mat-button class="mat__button" (click)="openDialog()" >Añadir Tornillo</button>
 
 
