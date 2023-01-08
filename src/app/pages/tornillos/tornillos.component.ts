@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, Inject, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatDialog} from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -12,15 +12,6 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 })
 export class TornillosComponent implements AfterViewInit {
 
-    constructor(public dialog: MatDialog) {}
-    displayedColumns: string[] = ['precio', 'nombre', 'formato', 'marca','action'];
-    dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
   public passedValues: PeriodicElement = {
 
     precio: 0,
@@ -29,6 +20,19 @@ export class TornillosComponent implements AfterViewInit {
     marca: '',
     action: ''
   }
+
+    constructor(public dialog: MatDialog) {}
+    displayedColumns: string[] = ['precio', 'nombre', 'formato', 'marca','action'];
+    dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
+
+
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   public openDialog(): void{
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {width:'500px'});
@@ -58,10 +62,16 @@ export class TornillosComponent implements AfterViewInit {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {width:'500px',data:'Nuevo Tornillo'});
     dialogRef.afterClosed().subscribe(
 
-      res => {
-        console.log(res);
+      () => {
 
-        ELEMENT_DATA.splice(index, 1);
+        const currentPage = this.paginator.pageIndex;
+
+        const itemsPerPage = this.paginator.pageSize;
+
+        const realIndex = index + currentPage * itemsPerPage;
+
+        ELEMENT_DATA.splice(realIndex, 1);
+        console.log(ELEMENT_DATA,index);
 
         this.updateDataSource();
 

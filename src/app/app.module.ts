@@ -53,7 +53,7 @@ import { MatDialogRef } from '@angular/material/dialog';
     MatInputModule,
 
   ],
-  providers: [{provide: MatPaginatorIntl, useValue: CustomPaginator()}, MatDialogRef],
+  providers: [{provide: MatPaginatorIntl, useValue: CustomPaginator()}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
