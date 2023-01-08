@@ -27,6 +27,11 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogRef } from '@angular/material/dialog';
 
+import { MAT_DIALOG_SCROLL_STRATEGY } from '@angular/material/dialog';
+
+import { MatMenuModule } from '@angular/material/menu';
+import { ColumnasComponent } from './pages/columnas/columnas.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +39,8 @@ import { MatDialogRef } from '@angular/material/dialog';
     HomeComponent,
     TornillosComponent,
     ConfirmDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    ColumnasComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +57,7 @@ import { MatDialogRef } from '@angular/material/dialog';
     MatButtonModule,
     FormsModule,
     MatInputModule,
+    MatMenuModule
 
   ],
   providers: [{provide: MatPaginatorIntl, useValue: CustomPaginator()}, TornillosComponent],

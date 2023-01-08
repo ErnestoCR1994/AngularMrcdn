@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PeriodicElement } from '../tornillos/tornillos.component';
+import { Tornillos } from '../tornillos/tornillos.component';
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -12,7 +12,7 @@ export class ConfirmDialogComponent {
   constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>){}
 
 
-  passedValues: PeriodicElement = {
+  passedValues: Tornillos = {
 
     precio: 0,
     nombre: '',
