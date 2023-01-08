@@ -1,7 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-
-import { MatFormField } from '@angular/material/form-field';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { PeriodicElement } from '../tornillos/tornillos.component';
 
 @Component({
@@ -11,15 +9,7 @@ import { PeriodicElement } from '../tornillos/tornillos.component';
 })
 export class ConfirmDialogComponent {
 
-
-
-  constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>
-
-   ){
-
-  }
-
-
+  constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>){}
   passedValues: PeriodicElement = {
 
     precio: 0,
@@ -28,9 +18,6 @@ export class ConfirmDialogComponent {
     marca: '',
     action: ''
   }
-
-
-
 }
 
 

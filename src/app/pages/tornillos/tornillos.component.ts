@@ -1,25 +1,9 @@
-import { AgGridAngular } from 'ag-grid-angular';
-import { ColDef, Module, RowNode } from 'ag-grid-community';
-import { HttpClient } from "@angular/common/http";
-
 import {AfterViewInit, Component, Inject, ViewChild} from '@angular/core';
-import {MatPaginator, PageEvent} from '@angular/material/paginator';
+import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
-import { DataSource } from '@angular/cdk/collections';
-
-
-//Other component
-
-
-
-import { MatFormField } from '@angular/material/form-field';
-
-
-/** Constants used to fill up our data base. */
 
 @Component({
   selector: 'app-tornillos',
@@ -27,12 +11,6 @@ import { MatFormField } from '@angular/material/form-field';
   styleUrls: ['./tornillos.component.scss']
 })
 export class TornillosComponent implements AfterViewInit {
-
-
-
-
-
-
 
     constructor(public dialog: MatDialog) {}
     displayedColumns: string[] = ['precio', 'nombre', 'formato', 'marca','action'];
@@ -43,7 +21,6 @@ export class TornillosComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-
   public passedValues: PeriodicElement = {
 
     precio: 0,
@@ -52,15 +29,7 @@ export class TornillosComponent implements AfterViewInit {
     marca: '',
     action: ''
   }
-
-
-
-
-
-
-
-
-  openDialog(): void{
+  public openDialog(): void{
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {width:'500px'});
     dialogRef.afterClosed().subscribe(
@@ -74,10 +43,8 @@ export class TornillosComponent implements AfterViewInit {
         this.passedValues.marca = res.marca;
         this.passedValues.action = '';
 
-         var array: PeriodicElement = res;
-         console.log(array,'el array');
-
-         ELEMENT_DATA.push(array);
+         var dataFromDialog: PeriodicElement = res;
+         ELEMENT_DATA.push(dataFromDialog);
          console.log(ELEMENT_DATA);
 
          this.updateDataSource();

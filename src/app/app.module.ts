@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
-
 import { AgGridModule } from 'ag-grid-angular';
 import { HomeComponent } from './pages/home/home.component';
 import { TornillosComponent } from './pages/tornillos/tornillos.component';
@@ -27,7 +25,7 @@ import { DeleteDialogComponent } from './pages/delete-dialog/delete-dialog.compo
 import { FormsModule } from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
-
+import { MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -52,9 +50,10 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatButtonModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+
   ],
-  providers: [{provide: MatPaginatorIntl, useValue: CustomPaginator()}],
+  providers: [{provide: MatPaginatorIntl, useValue: CustomPaginator()}, MatDialogRef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
